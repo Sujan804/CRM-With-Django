@@ -1,0 +1,32 @@
+{% extends 'leads/layouts.html' %}
+{% block title %}Leads{% endblock title %}
+{% block content %}
+    <div class="container">
+        <figure class="text-center">
+            <blockquote class="blockquote">
+                <p  class="text-light">List of our leads</p>
+            </blockquote>
+        </figure>
+        <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+            <th scope="col">First Name </th>
+            <th scope="col">Last Name </th>
+            <th scope="col">Age</th>
+            <th scope="col">Details</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for lead in leads %}
+                <tr>
+                    <th>{{lead.first_name}}</th>
+                    <td>{{lead.last_name}}</td>
+                    <td>{{lead.age}}</td>
+                    <td><a href="/leads/{{lead.pk}}">Details</a></td>
+                </tr>
+            {% endfor %}  
+
+        </tbody>
+        </table>
+    </div>
+{% endblock content %}

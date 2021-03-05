@@ -1,0 +1,16 @@
+{% extends 'leads/layouts.html' %}
+{% block titile %}Details{% endblock titile %}
+{% block content %}
+<div class="card container">
+  <h5 class="card-title">{{lead.first_name}}</h5>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">Name : {{lead.first_name}} {{lead.last_name}}</li>
+    <li class="list-group-item">Age : {{lead.age}} </li>
+    <li class="list-group-item">Agent : {{lead.agent}}</li>
+    <li class="list-group-item align-middle"><a href="/leads/" class="btn btn-dark">Go Back</a></li>
+  </ul>
+    
+  </div>
+</div>
+{% endblock content %}

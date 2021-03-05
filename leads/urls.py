@@ -3,5 +3,6 @@ from .import views
 app_name ="leads"
 
 urlpatterns = [
-    path('all/' ,views.home_page,name="home")
+    path('' ,views.lead_list,name="home"),
+    path('<pk>/',views.lead_detail,name="details")
 ]
