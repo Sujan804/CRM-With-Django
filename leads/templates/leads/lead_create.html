@@ -1,0 +1,31 @@
+{% extends 'leads/layouts.html' %}
+{% block title %}Forms{% endblock title %}
+{% block content %}
+
+<div class="container">
+<h1>Create a new lead</h1>
+<form method="post" action=".">
+    {% csrf_token %}
+  <div class="row mb-3">
+    <label for="first_name" class="col-sm-2 col-form-label">First Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="first_name" name="first_name">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="last_name" class="col-sm-2 col-form-label">Last Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="last_name" name="last_name">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="age" class="col-sm-2 col-form-label">Age</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="age" name="age">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-danger align-middle">Create</button>
+</form>
+</div>
+
+{% endblock content %}
