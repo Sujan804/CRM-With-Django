@@ -1,4 +1,4 @@
-{% extends 'leads/layouts.html' %}
+{% extends 'layouts.html' %}
 {% block title %}Forms{% endblock title %}
 {% block content %}
 
@@ -6,7 +6,7 @@
 <h1>Create a new lead</h1>
 <form method="post" action=".">
     {% csrf_token %}
-  <div class="row mb-3">
+  {% comment %} <div class="row mb-3">
     <label for="first_name" class="col-sm-2 col-form-label">First Name</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="first_name" name="first_name">
@@ -24,6 +24,19 @@
       <input type="number" class="form-control" id="age" name="age">
     </div>
   </div>
+  <div class="row mb-3">
+    <label for="agent" class="col-sm-2 col-form-label">Agent</label>
+    <div class=" col-sm-10">
+        <select class="form-select form-select-sm" name="agent" aria-label=".form-select-sm example">
+        {% for agent  in agents %}
+          <option value="{{agent}}">{{agent}}</option>
+        {% endfor %}
+    </select>
+    </div> 
+  </div>
+   {% endcomment %}
+   {{form.as_p}}
+
   <button type="submit" class="btn btn-danger align-middle">Create</button>
 </form>
 </div>
