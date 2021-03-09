@@ -1,8 +1,54 @@
-from django.shortcuts import redirect, render
+from django.db.models import query
+from django.db.models.query import QuerySet
+from django.forms.widgets import Textarea
+from django.shortcuts import redirect, render,reverse
 from django.views.decorators.csrf import csrf_protect
+from django.views import generic
+from django.views.generic.base import TemplateView
 from .models import Lead,Agent
 from .forms import LeadModelForm,LeadForm
 # Create your views here.
+
+# class based view here
+
+class LandingPageView(generic.TemplateView):
+    template_name = 'landing.html'
+
+class LeadListView(generic.ListView):
+    template_name ='leads/lead_list.html'
+    queryset = Lead.objects.all()
+    context_object_name = 'leads'
+
+class LeadDetailView(generic.DetailView):
+    template_name = "leads/lead_detail.html"
+    queryset  = Lead.objects.all()
+    context_object_name = 'lead'
+
+class LeadUpdateView(generic.UpdateView):
+    template_name = "leads/lead_update.html"
+    queryset = Lead.objects.all()
+    form_class = LeadModelForm
+
+    def get_success_url(self):
+        return reverse("leads:lead-list")
+
+class LeadCreateView(generic.CreateView):
+    template_name = "leads/lead_create.html"
+    form_class = LeadModelForm
+
+    def get_success_url(self):
+        return reverse("leads:lead-list")
+
+class LeadDeleteView(generic.DeleteView):
+    template_name = "leads/lead_delete.html"
+    queryset =Lead.objects.all()
+
+    def get_success_url(self):
+        return reverse("leads:lead-list")
+    
+
+
+
 def landing_page(request):
     return render(request,"landing.html")
 

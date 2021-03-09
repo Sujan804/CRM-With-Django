@@ -1,7 +1,7 @@
 from django import forms
 from django.db.models import fields
 from django.forms.fields import CharField
-from .models import Lead
+from .models import Lead, User
 
 class LeadModelForm(forms.ModelForm):
     class Meta:
@@ -12,6 +12,13 @@ class LeadModelForm(forms.ModelForm):
             'age',
             'agent'
         }
+
+# class UserLeadForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields ={
+#             '__all__'
+#         }
 
 
 class LeadForm(forms.Form):
