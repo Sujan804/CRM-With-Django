@@ -6,10 +6,17 @@ from django.views.decorators.csrf import csrf_protect
 from django.views import generic
 from django.views.generic.base import TemplateView
 from .models import Lead,Agent
-from .forms import LeadModelForm,LeadForm
+from .forms import LeadModelForm,LeadForm,CustomUserCreationForm
+from django.core.mail import send_mail
 # Create your views here.
 
 # class based view here
+class SignUpView(generic.CreateView):
+    template_name = "registration/signup.html"
+    form_class = CustomUserCreationForm
+
+    def get_success_url(self):
+        return reverse("login")
 
 class LandingPageView(generic.TemplateView):
     template_name = 'landing.html'
@@ -38,6 +45,16 @@ class LeadCreateView(generic.CreateView):
 
     def get_success_url(self):
         return reverse("leads:lead-list")
+    def form_valid(self,form):
+        send_mail(
+            subject ="New Lead has been created",
+            message ="Go to the site to see the lead",
+            from_email = 'sujanmec804@gmail.com',
+            recipient_list = ['recipient@gmail.com']
+
+
+        )
+        return super(LeadCreateView, self).form_valid(form)
 
 class LeadDeleteView(generic.DeleteView):
     template_name = "leads/lead_delete.html"
@@ -45,8 +62,10 @@ class LeadDeleteView(generic.DeleteView):
 
     def get_success_url(self):
         return reverse("leads:lead-list")
-    
 
+
+    
+#function based view
 
 
 def landing_page(request):
