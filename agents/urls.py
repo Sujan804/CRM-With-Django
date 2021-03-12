@@ -1,7 +1,13 @@
-from agents.views import AgentListView,AgentCreateView
+from agents.views import AgentListView,AgentCreateView,AgentUpdateView,AgentDetaiView
+from leads.views import LeadUpdateView
 from django.urls import path
+from . import views
 app_name = 'agents'
 urlpatterns = [
-    path('',AgentListView.as_view(),name='agent-list'),
-    path('create/',AgentCreateView.as_view(),name='agent-create')
+    path('',views.AgentListView.as_view(),name='agent-list'),
+    path('create/',views.AgentCreateView.as_view(),name='agent-create'),
+    path('<int:pk>/',views.AgentDetaiView.as_view(),name='agent-detail'),
+    path('<int:pk>/update',views.AgentUpdateView.as_view(),name='agent-update'),
+    path('<int:pk>/delete',views.AgentDeleteView.as_view(),name="agent-delete"),
+  
 ]

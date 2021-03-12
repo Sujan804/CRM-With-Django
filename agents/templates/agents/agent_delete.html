@@ -1,0 +1,12 @@
+
+{% extends 'layouts.html' %}
+{% block title %}Delete{% endblock title %}
+{% block content %}
+    <a href="{% url 'agents:agent-list'%}">Back to list</a>
+    <h1>Are you sure Deleting this Agent?</h1>
+    <form method ="post">
+        {% csrf_token %}
+        {% comment %} {{form.as_p}} {% endcomment %}
+        <a><button  type = "submit" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Delete</button></a>
+    </form>
+{% endblock content %}
